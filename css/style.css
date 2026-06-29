@@ -1,3 +1,128 @@
+/* Базовые настройки фона сайта */
 body {
-    background-color: rosybrown;
+    background-color: #fcf8f5;
+    color: #2b1810;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
 }
+
+/* ИСПРАВЛЕННЫЙ ХЕДЕР: Принудительно задаем высоту, чтобы картинка открылась */
+.header {
+    /* Выходим из папки css через ../ и заходим в img к картинке */
+    background-image: linear-gradient(rgba(43, 24, 16, 0.55), rgba(43, 24, 16, 0.55)), url('../img/Image20260629205240.jpg');
+    background-size: cover;        /* Растягиваем изображение на весь блок */
+    background-position: center;   /* Центрируем картинку фокусом посередине */
+    min-height: 450px;             /* Жёсткая минимальная высота блока хедера */
+    width: 100%;
+    display: flex;                 /* Flexbox для выравнивания текста */
+    justify-content: center;       /* Центрируем заголовок по горизонтали */
+    align-items: center;           /* Центрируем заголовок по вертикали */
+    margin: 0;
+}
+
+/* Стильный шрифт заголовка хедера */
+.header h1 {
+    color: #ffffff;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 0;
+    text-align: center;
+    text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Настройки сетки (Main) */
+.main {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.country-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+/* Базовое состояние карточки */
+.country-card {
+    background-size: cover;
+    background-position: center;
+    border-radius: 14px;
+    overflow: hidden;
+    /* Легкая базовая тень в теплых кофейных тонах */
+    box-shadow: 0 6px 20px rgba(58, 32, 19, 0.15);
+    display: flex;
+    min-height: 420px;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+}
+
+/* Эффект при наведении: выразительная тень цвета густого шоколада/капучино */
+.country-card:hover {
+    transform: translateY(-12px);
+    /* Мы использовали цвет #2e160a (насыщенный шоколад)
+       и подняли непрозрачность до 0.75, чтобы тень стала плотнее и аппетитнее
+    */
+    box-shadow: 0 22px 45px rgba(46, 22, 10, 0.75);
+}
+.country-card.playing {
+    transform: scale(1.03);
+    box-shadow: 0 0 0 3px #bcaaa4, 0 16px 36px rgba(43, 24, 16, 0.25);
+}
+
+/* Контент внутри карточек */
+.card-content {
+    background: linear-gradient(to top, rgba(20, 10, 5, 0.95) 35%, rgba(20, 10, 5, 0.3) 100%);
+    padding: 35px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: left;
+    width: 100%;
+}
+
+.card-content h2 {
+    color: #fcf8f5;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin: 0 0 10px 0;
+}
+
+.card-content p {
+    color: #d7ccc8;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-weight: 300;
+    margin: 0 0 20px 0;
+}
+
+.card-link {
+    color: #bcaaa4;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    align-self: flex-start;
+    border-bottom: 1px solid rgba(188, 170, 164, 0.4);
+    padding-bottom: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.card-link:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+/* Временные фоны для стран */
+.card-brazil { background-image: url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600&auto=format&fit=crop'); }
+.card-colombia { background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format&fit=crop'); }
+.card-india { background-image: url('https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?q=80&w=600&auto=format&fit=crop'); }
+.card-ethiopia { background-image: url('https://images.unsplash.com/photo-1507133750040-4a8f57021571?q=80&w=600&auto=format&fit=crop'); }
+.card-costa-rica { background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600&auto=format&fit=crop'); }
+.card-kenya { background-image: url('https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=600&auto=format&fit=crop'); }
