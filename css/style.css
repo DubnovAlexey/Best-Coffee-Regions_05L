@@ -74,13 +74,21 @@ body {
     transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
 }
 
-/* Эффект при наведении: выразительная тень цвета густого шоколада/капучино */
+/* ЭФФЕКТ ПРИ НАВЕДЕНИИ */
 .country-card:hover {
-    transform: translateY(-12px);
-    /*  цвет #2e160a (насыщенный шоколад)
-       и подняли непрозрачность до 0.75, чтобы тень стала плотнее и аппетитнее
-    */
-    box-shadow: 0 22px 45px rgba(46, 22, 10, 0.75);
+    /* 1. увеличиваем масштаб. scale(1.18) — это на 18% больше. */
+    transform: scale(1.18) translateY(-10px); /* Также чуть поднимаем её вверх для объёма */
+
+    /* 2. Добавляем зет-индекс, чтобы увеличенная карточка была ПОВЕРХ своих соседей */
+    z-index: 10;
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.25);
+
+    border-color: rgba(255, 255, 255, 0.9); /* Делаем белую рамку ярче */
+}
+
+.country-card {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, z-index 0.3s, border-color 0.3s;
+    z-index: 1;
 }
 
 .country-card.playing {
