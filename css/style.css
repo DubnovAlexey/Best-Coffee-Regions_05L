@@ -13,6 +13,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 .header {
     background-image: linear-gradient(
             to bottom,
@@ -81,6 +82,7 @@ body {
     */
     box-shadow: 0 22px 45px rgba(46, 22, 10, 0.75);
 }
+
 .country-card.playing {
     transform: scale(1.03);
     box-shadow: 0 0 0 3px #bcaaa4, 0 16px 36px rgba(43, 24, 16, 0.25);
@@ -130,9 +132,26 @@ body {
 }
 
 /* Временные фоны для стран */
-.card-brazil { background-image: url('../img/brazil.avif' );}
-.card-colombia { background-image: url('../img/colombia.avif'); }
-.card-india { background-image: url('../img/indian_farmers.webp'); }
-.card-ethiopia { background-image: url('../img/efiopoia11.jpg'); }
-.card-costa-rica { background-image: url('../img/costa-rica.webp'); }
-.card-kenya { background-image: url('../img/Kenyan-coffee9.jpg'); }
+.card-brazil {
+    background-image: url('../img/brazil.avif');
+}
+
+.card-colombia {
+    background-image: url('../img/colombia.avif');
+}
+
+.card-india {
+    background-image: url('../img/indian_farmers.webp');
+}
+
+.card-ethiopia {
+    background-image: url('../img/efiopoia11.jpg');
+}
+
+.card-costa-rica {
+    background-image: url('../img/costa-rica.webp');
+}
+
+.card-kenya {
+    background-image: url('../img/Kenyan-coffee9.jpg');
+}

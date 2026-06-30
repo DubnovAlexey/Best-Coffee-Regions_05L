@@ -1,9 +1,13 @@
-import { handleCardAudio } from './audio-player.js';
-
-// Инициализация всех модулей после загрузки DOM структуры
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Кастомный кофейный гид успешно загружен!');
 
-    // Слушаем клики по всему документу для управления музыкой
-    document.body.addEventListener('click', handleCardAudio);
+    // Шаг 1: Запускаем выделенный рендеринг карточек из базы данных
+    if (typeof window.renderCoffeeCards === 'function') {
+        window.renderCoffeeCards();
+    }
 
+    // Шаг 2: Только после отрисовки карточек навешиваем на них плеер
+    if (typeof window.initAudioPlayer === 'function') {
+        window.initAudioPlayer();
+    }
 });

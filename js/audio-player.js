@@ -1,32 +1,19 @@
-// Переменные инкапсулированы внутри модуля, чтобы не загрязнять глобальную видимость
+// Модуль управления аудио плеером (Только логика звука)
 let currentAudio = null;
 let currentCard = null;
 
-export function handleCardAudio(event) {
-    if (event.target.classList.contains('card-link')) return;
+function handleCardAudio(card) {
+    const audioSrc = card.getAttribute('data-audio');
 
-    const card = event.target.closest('.country-card');
-    const isHeader = event.target.closest('.header') || event.target.matches('.header');
-
-    // Логика паузы/воспроизведения
-    if (currentAudio) {
-        if (isHeader || !card || currentCard === card) {
-            if (!currentAudio.paused) {
-                currentAudio.pause();
-                if (currentCard) currentCard.classList.remove('playing');
-            } else {
-                currentAudio.play();
-                if (currentCard) currentCard.classList.add('playing');
-            }
-            return;
+    if (currentCard === card) {
+        if (currentAudio.paused) {
+            currentAudio.play().catch(err => console.log("Ошибка воспроизведения:", err));
+            card.classList.add('playing');
+        } else {
+            currentAudio.pause();
+            card.classList.remove('playing');
         }
-    }
-
-    // Логика запуска нового трека
-    if (card) {
-        const audioSrc = card.getAttribute('data-audio');
-        if (!audioSrc) return;
-
+    } else {
         if (currentAudio) {
             currentAudio.pause();
             if (currentCard) currentCard.classList.remove('playing');
@@ -35,10 +22,31 @@ export function handleCardAudio(event) {
         currentAudio = new Audio(audioSrc);
         currentCard = card;
 
-        currentAudio.play().then(() => {
-            card.classList.add('playing');
-        }).catch(error => {
-            console.warn("Аудиофайл пока отсутствует по пути: " + audioSrc);
+        currentAudio.play()
+            .then(() => {
+                card.classList.add('playing');
+            })
+            .catch(error => {
+                console.warn(`Аудиофайл пока отсутствует по пути: ${audioSrc}`, error);
+                card.classList.add('playing'); // Эффект для визуального теста
+            });
+
+        currentAudio.addEventListener('ended', () => {
+            card.classList.remove('playing');
+            currentAudio = null;
+            currentCard = null;
         });
     }
 }
+
+// Инициализация обработчиков клика
+window.initAudioPlayer = function() {
+    const cards = document.querySelectorAll('.country-card');
+    cards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            // Если кликнули по ссылке, музыку не запускаем
+            if (e.target.classList.contains('card-link')) return;
+            handleCardAudio(card);
+        });
+    });
+};
