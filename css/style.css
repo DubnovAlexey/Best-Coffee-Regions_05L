@@ -32,9 +32,9 @@ body {
     margin: 0;
 }
 
-/* Стильный шрифт заголовка хедера */
+/* шрифт заголовка хедера */
 .header h1 {
-    color: #ffffff;
+    color: #372804;
     font-family: 'Playfair Display', serif;
     font-size: 3.8rem;
     font-weight: 300;
