@@ -1,23 +1,33 @@
-/* Базовые настройки фона сайта */
 body {
-    background-color: #fcf8f5;
-    color: #2b1810;
+    background-image: linear-gradient(rgba(26, 14, 9, 0.45),
+    rgba(26, 14, 9, 0.45)),
+    url('../img/bg-beans.jpg');
+    background-attachment: fixed;
+
+
+    background-size: 106% auto;
+    background-position: right center;
+
+    color: #fcf8f5;
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
 }
-
-/* ИСПРАВЛЕННЫЙ ХЕДЕР: Принудительно задаем высоту, чтобы картинка открылась */
 .header {
-    /* Выходим из папки css через ../ и заходим в img к картинке */
-    background-image: linear-gradient(rgba(43, 24, 16, 0.55), rgba(43, 24, 16, 0.55)), url('../img/Image20260629205240.jpg');
-    background-size: cover;        /* Растягиваем изображение на весь блок */
-    background-position: center;   /* Центрируем картинку фокусом посередине */
-    min-height: 450px;             /* Жёсткая минимальная высота блока хедера */
+    background-image: linear-gradient(
+            to bottom,
+            rgba(43, 24, 16, 0.3) 0%,
+            rgba(43, 24, 16, 0.45) 70%,
+            rgba(43, 24, 16, 0.75) 100%
+    ), url('../img/Image20260629205240.jpg');
+
+    background-size: cover;
+    background-position: center;
+    min-height: 450px;
     width: 100%;
-    display: flex;                 /* Flexbox для выравнивания текста */
-    justify-content: center;       /* Центрируем заголовок по горизонтали */
-    align-items: center;           /* Центрируем заголовок по вертикали */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
 }
 
@@ -26,11 +36,11 @@ body {
     color: #ffffff;
     font-family: 'Playfair Display', serif;
     font-size: 3.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-weight: 300;
+    letter-spacing: 6px;
     margin: 0;
     text-align: center;
-    text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
+    text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 /* Настройки сетки (Main) */
@@ -66,7 +76,7 @@ body {
 /* Эффект при наведении: выразительная тень цвета густого шоколада/капучино */
 .country-card:hover {
     transform: translateY(-12px);
-    /* Мы использовали цвет #2e160a (насыщенный шоколад)
+    /*  цвет #2e160a (насыщенный шоколад)
        и подняли непрозрачность до 0.75, чтобы тень стала плотнее и аппетитнее
     */
     box-shadow: 0 22px 45px rgba(46, 22, 10, 0.75);
@@ -120,9 +130,9 @@ body {
 }
 
 /* Временные фоны для стран */
-.card-brazil { background-image: url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600&auto=format&fit=crop'); }
-.card-colombia { background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format&fit=crop'); }
-.card-india { background-image: url('https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?q=80&w=600&auto=format&fit=crop'); }
-.card-ethiopia { background-image: url('https://images.unsplash.com/photo-1507133750040-4a8f57021571?q=80&w=600&auto=format&fit=crop'); }
-.card-costa-rica { background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600&auto=format&fit=crop'); }
-.card-kenya { background-image: url('https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=600&auto=format&fit=crop'); }
+.card-brazil { background-image: url('../img/brazil.avif' );}
+.card-colombia { background-image: url('../img/colombia.avif'); }
+.card-india { background-image: url('../img/indian_farmers.webp'); }
+.card-ethiopia { background-image: url('../img/efiopoia11.jpg'); }
+.card-costa-rica { background-image: url('../img/costa-rica.webp'); }
+.card-kenya { background-image: url('../img/Kenyan-coffee9.jpg'); }
