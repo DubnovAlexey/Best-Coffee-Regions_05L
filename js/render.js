@@ -1,5 +1,5 @@
 // Модуль отрисовки интерфейса (Рендеринг)
-window.renderCoffeeCards = function() {
+window.renderCoffeeCards = function () {
     const grid = document.getElementById('coffee-grid');
     const countries = window.coffeeCountries;
 

@@ -40,7 +40,7 @@ function handleCardAudio(card) {
 }
 
 // Инициализация обработчиков клика
-window.initAudioPlayer = function() {
+window.initAudioPlayer = function () {
     const cards = document.querySelectorAll('.country-card');
     cards.forEach(card => {
         card.addEventListener('click', (e) => {
