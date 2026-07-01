@@ -27,8 +27,11 @@ function handleCardAudio(card) {
                 card.classList.add('playing');
             })
             .catch(error => {
-                console.warn(`Аудиофайл пока отсутствует по пути: ${audioSrc}`, error);
-                card.classList.add('playing'); // Эффект для визуального теста
+                console.warn(`Аудиофайл отсутствует или не может быть воспроизведен по пути: ${audioSrc}`, error);
+                // ИСПРАВЛЕНИЕ: если произошла ошибка, карточка НЕ должна гореть активной
+                card.classList.remove('playing');
+                currentAudio = null;
+                currentCard = null;
             });
 
         currentAudio.addEventListener('ended', () => {

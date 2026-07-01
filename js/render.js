@@ -15,7 +15,7 @@ window.renderCoffeeCards = function () {
             <div class="card-content">
                 <h2>${country.name}</h2>
                 <p>${country.description}</p>
-                <a href="${country.link}" target="_blank" class="card-link">Learn more about ${country.name}</a>
+                <a href="${country.link}" target="_blank" rel="noopener noreferrer" class="card-link">Learn more about ${country.name}</a>
             </div>
         </li>
     `).join('');
