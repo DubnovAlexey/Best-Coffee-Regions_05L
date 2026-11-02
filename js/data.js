@@ -4,7 +4,7 @@ window.coffeeCountries = [
         id: 'brazil',
         name: 'Brazil',
         audio: 'audio/brazil.mp3',
-        description: 'Arabica dominates both Brazil and the world as a whole with about 85% of the production; robusta accounts for the remaining 30%. In Brazil, arabica production is located in the main coffee-growing cluster of states led by Rio where arabica is produced almost exclusively.',
+        description: 'Arabica dominates both Brazil and the world as a whole with about 70% of the production; robusta accounts for the remaining 30%. In Brazil, arabica production is located in the main coffee-growing cluster of states led by Minas Gerais, where arabica is produced almost exclusively.',
         link: 'https://en.wikipedia.org/wiki/Coffee_production_in_Brazil'
     },
     {
