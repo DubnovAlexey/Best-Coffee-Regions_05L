@@ -1,55 +1,57 @@
-// Модуль управления аудио плеером (Только логика звука)
+// ФАЙЛ: js/audio-player.js
+// НАЗНАЧЕНИЕ: Один проигрыватель карточек, защита от запоздалых play()/ended.
+// РАЗДЕЛЫ: 1. Состояние плеера; 2. Запуск и остановка; 3. Подключение карточек.
 let currentAudio = null;
 let currentCard = null;
+let playbackRequest = 0;
 
+// НАЧАЛО ФУНКЦИИ handleCardAudio
 function handleCardAudio(card) {
     const audioSrc = card.getAttribute('data-audio');
-
-    if (currentCard === card) {
-        if (currentAudio.paused) {
-            currentAudio.play().catch(err => console.log("Ошибка воспроизведения:", err));
-            card.classList.add('playing');
-        } else {
-            currentAudio.pause();
-            card.classList.remove('playing');
-        }
-    } else {
-        if (currentAudio) {
-            currentAudio.pause();
-            if (currentCard) currentCard.classList.remove('playing');
-        }
-
-        currentAudio = new Audio(audioSrc);
+    if (!audioSrc) return;
+    const request = ++playbackRequest;
+    if (currentCard === card && currentAudio && !currentAudio.paused) {
+        currentAudio.pause();
+        card.classList.remove('playing');
+        return;
+    }
+    if (currentCard !== card || !currentAudio) {
+        if (currentAudio) currentAudio.pause();
+        if (currentCard) currentCard.classList.remove('playing');
+        const audio = new Audio(audioSrc);
+        currentAudio = audio;
         currentCard = card;
-
-        currentAudio.play()
-            .then(() => {
-                card.classList.add('playing');
-            })
-            .catch(error => {
-                console.warn(`Аудиофайл отсутствует или не может быть воспроизведен по пути: ${audioSrc}`, error);
-                // ИСПРАВЛЕНИЕ: если произошла ошибка, карточка НЕ должна гореть активной
-                card.classList.remove('playing');
-                currentAudio = null;
-                currentCard = null;
-            });
-
-        currentAudio.addEventListener('ended', () => {
+        audio.addEventListener('ended', () => {
+            if (currentAudio !== audio) return;
+            playbackRequest++;
             card.classList.remove('playing');
             currentAudio = null;
             currentCard = null;
         });
     }
+    const audio = currentAudio;
+    audio.play().then(() => {
+        if (request === playbackRequest && currentAudio === audio && !audio.paused) card.classList.add('playing');
+    }).catch(error => {
+        // Отклонённое обещание старого трека не сбрасывает уже выбранную карточку.
+        if (request !== playbackRequest || currentAudio !== audio) return;
+        console.warn('Не удалось воспроизвести аудио: ' + audioSrc, error);
+        card.classList.remove('playing');
+        currentAudio = null;
+        currentCard = null;
+    });
 }
+// КОНЕЦ ФУНКЦИИ handleCardAudio
 
-// Инициализация обработчиков клика
+// НАЧАЛО ФУНКЦИИ initAudioPlayer
 window.initAudioPlayer = function () {
-    const cards = document.querySelectorAll('.country-card');
-    cards.forEach(card => {
-        card.addEventListener('click', (e) => {
-            // Если кликнули по ссылке, музыку не запускаем
-            if (e.target.classList.contains('card-link')) return;
+    document.querySelectorAll('.country-card').forEach(card => {
+        if (card.dataset.audioBound === 'true') return;
+        card.dataset.audioBound = 'true';
+        card.addEventListener('click', event => {
+            if (event.target.closest('a')) return;
             handleCardAudio(card);
         });
     });
 };
+// КОНЕЦ ФУНКЦИИ initAudioPlayer
